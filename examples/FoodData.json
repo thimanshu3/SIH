@@ -1,0 +1,134 @@
+[
+ {
+   "Name": "Cup Noodles",
+   "Price": "Rs.200",
+   "Description": "Delicious Masala Flavour",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Poha",
+   "Price": "Rs.200",
+   "Description": "Khata Meetha Poha",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Upma",
+   "Price": "Rs.200",
+   "Description": "A Favourite Indian Breakfast",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Nachos",
+   "Price": "Rs.100",
+   "Description": "Always a good time for cornitos",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Cashew and nuts",
+   "Price": "Rs.150",
+   "Description": "Nutrition is needed to prevent sickness",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Popcorn",
+   "Price": "Rs.150",
+   "Description": "A moment of tasty surprise",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Britannia Cake",
+   "Price": "Rs.50",
+   "Description": "Eat healthy , think better",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Cookies",
+   "Price": "Rs.50",
+   "Description": "A liitle more chocolaty , crunchy",
+   "Category": "Breakfast/Snacks"
+ },
+ {
+   "Name": "Coffee",
+   "Price": "Rs.100",
+   "Description": "Insert coffee to begin",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Strom Energy Drink ",
+   "Price": "Rs.100",
+   "Description": "Awake every senses",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Shake",
+   "Price": "Rs.100",
+   "Description": "Catch the spirit",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Coca Cola",
+   "Price": "Rs.100",
+   "Description": "Have a coke and smile",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Mineral Water",
+   "Price": "Rs.50",
+   "Description": "Obey your thirst",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Chai",
+   "Price": "Rs.100",
+   "Description": "Cup of tea to make it large",
+   "Category": "Beverages"
+ },
+ {
+   "Name": "Bhel Puri",
+   "Price": "Rs.150",
+   "Description": "Eat fresh",
+   "Category": "Snacks"
+ },
+ {
+   "Name": "Smart kid Bag And Meal",
+   "Price": "Rs.450",
+   "Description": "Eat to live , not live to eat",
+   "Category": "Snacks"
+ },
+ {
+   "Name": "Samosa",
+   "Price": "Rs.150",
+   "Description": "A little crispy start",
+   "Category": "Snacks"
+ },
+ {
+   "Name": "Sandwiches",
+   "Price": "Rs.250",
+   "Description": "always hungry for a sandwich",
+   "Category": "Snacks"
+ },
+ {
+   "Name": "Idli Sambhar",
+   "Price": "Rs.200",
+   "Description": "Idly is overrated",
+   "Category": "Meal"
+ },
+ {
+   "Name": "Dal Chawal",
+   "Price": "Rs.200",
+   "Description": "Soul comforting food at its best",
+   "Category": "Meal"
+ },
+ {
+   "Name": "Veg. Biryani",
+   "Price": "Rs.200",
+   "Description": "Biyani taste better then the rest",
+   "Category": "Meal"
+ },
+ {
+   "Name": "Chicken Biryani",
+   "Price": "Rs.250",
+   "Description": "When you are crazy for chicken ",
+   "Category": "Meal"
+ }
+]
