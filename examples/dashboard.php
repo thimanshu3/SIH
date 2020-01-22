@@ -1,31 +1,10 @@
 <?php
-require 'credentials.php';
+//starting the session
+session_start();
 
-$url = "https://" . $authstring . "@" . $dbhost . "/" . $dbname . "/_all_docs?include_docs=true";
+include 'FoodOrderApi.php';
+include 'CurrentUserApi.php';
 
-$headers = array("Content-Type:application/json");
-
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 0);
-//curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_NOBODY, 0);
-//curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-
-$response = curl_exec($ch);
-curl_close($ch);
-
-//echo $response;
-$response = json_decode($response, true);
-
-
-$numberofdocs = $response['total_rows'];
-
-$rows = $response['rows'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -197,6 +176,20 @@ CrewBot  </title>
       <!-- End Navbar -->
       <div class="content" style="margin-top: 0px;">
         <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-12 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h3 class="card-title">Flight No.- <?php echo $response1['flight_no'] ?></h3>
+                  <p class="card-category">
+                    <h4 class="card-title">From- <?php echo $response1['departure_city'] ?></h4>
+
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body"></div>
+          </div>
           <div class="row">
             <div class="col-lg-12 col-md-12">
               <div class="card">
