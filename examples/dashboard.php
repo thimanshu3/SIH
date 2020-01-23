@@ -578,7 +578,6 @@ include 'CurrentUserApi.php';
     var user = '<?php echo $response1['passenger_name']?>';
     let intial = `Hello ${user} i am crewbot How may i assist you`;
     sendmsgtoscreen(intial, "left");
-    readOutLoud(intial);
 
   </script>
 </body>
