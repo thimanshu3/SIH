@@ -4,15 +4,14 @@ require 'credentials.php';
 if(isset($_POST['item']))
 {
 
-$item = $_POST['item'];
-$price = $_POST['price'];
-
 $data = ' {
-  "fooditem": "'.$item.'",
-  "price" :	"'.$price.'",
-  "seatnumber": "2D",
+  "id": "'.$_POST['email'].'", 
+  "fooditem": "'.$_POST['item'].'",
+  "price" :	"'.$_POST['price'].'",
+  "seatnumber": "'.$_POST['seat'].'",
   "status": "False",
-  "username": "Himanshu Tak"
+  "username": "'.$_POST['username'].'",
+  "email" : "'.$_POST['email'].'"
  }';
 
 

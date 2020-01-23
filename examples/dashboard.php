@@ -1,31 +1,11 @@
 <?php
-require 'credentials.php';
-
-$url = "https://" . $authstring . "@" . $dbhost . "/" . $dbname . "/_all_docs?include_docs=true";
-
-$headers = array("Content-Type:application/json");
-
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_URL, $url);
-curl_setopt($ch, CURLOPT_POST, 0);
-//curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_NOBODY, 0);
-//curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-
-$response = curl_exec($ch);
-curl_close($ch);
-
-//echo $response;
-$response = json_decode($response, true);
+//starting the session
+include 'FoodOrderApi.php';
+session_start();
+$email = $_SESSION['user_id'] or header("Location: ./index.php");
+include 'CurrentUserApi.php';
 
 
-$numberofdocs = $response['total_rows'];
-
-$rows = $response['rows'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +16,7 @@ $rows = $response['rows'];
   <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-CrewBot  </title>
+    CrewBot </title>
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no" name="viewport" />
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
@@ -47,6 +27,17 @@ CrewBot  </title>
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
   <script src="../assets/js/core/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/css/mdb.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script>
+  var  username = '<?php echo $response1['passenger_name'] ?>';
+  var email = '<?php echo $response1['email'] ?>';
+  var seat = '<?php echo $response1['seatnumber'] ?>';
+
+  localStorage.setItem("email" , email);
+  localStorage.setItem("username" , username);
+  localStorage.setItem("seat" , seat);  
+  </script>
 </head>
 <style>
   .margin_auto {
@@ -201,9 +192,10 @@ CrewBot  </title>
             <div class="col-lg-12 col-md-12">
               <div class="card">
                 <div class="card-header card-header-primary">
-                  <h4 class="card-title">You might like these items</h4>
-                  <p class="card-category">
-                    these are some personalised item for you
+                  <h3 class="card-title">Flight No.- <?php echo $response1['flight_no'] ?></h3>
+                  <p class="card-category d-flex">
+                    <h4 class="card-title">From- <?php echo $response1['departure_city'] ?></h4>
+
                   </p>
                 </div>
               </div>
@@ -583,6 +575,11 @@ CrewBot  </title>
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
     });
+    var user = '<?php echo $response1['passenger_name']?>';
+    let intial = `Hello ${user} i am crewbot How may i assist you`;
+    sendmsgtoscreen(intial, "left");
+    readOutLoud(intial);
+
   </script>
 </body>
 

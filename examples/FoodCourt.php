@@ -126,12 +126,12 @@ FoodCourt
                       <div class="container ml-5" style="max-width: 100%;">
                         <div class="row ml-5">
                           <!-- Card Narrower -->
-                          <?php foreach ($FoodArray as $food) {
+                          <?php foreach ($FoodArray['SIH'] as $food) {
                             if ($food['Category'] == "Breakfast/Snacks") {
                               echo '  <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
                             <!-- Card image -->
                             <div class="view view-cascade overlay">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+                              <img class="card-img-top" src="'.$food['Image'].'" alt="Card image cap" />
                               <a>
                                 <div class="mask rgba-white-slight"></div>
                               </a>
@@ -150,7 +150,7 @@ FoodCourt
                               </h4>
                               <!-- Text -->
                               <p class="card-text">
-                              ' . $food['Description'] . '
+                              ' . $food['Ingredients'] . '
                               </p>
                               <!-- Button -->
                               <a class="btn btn-indigo btn-round" onclick="markOrder(\'' . $food['Name'] . '\',\'' . $food['Price'] . '\')">Order</a>
@@ -174,12 +174,12 @@ FoodCourt
                     <div class="tab-pane" id="messages">
                       <div class="container ml-5" style="max-width: 100%;">
                         <div class="row ml-5">
-                          <?php foreach ($FoodArray as $food) {
-                            if ($food['Category'] == "Meal") {
+                          <?php foreach ($FoodArray['SIH'] as $food) {
+                            if ($food['Category'] == "Lunch/Dinner") {
                               echo '  <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
                             <!-- Card image -->
                             <div class="view view-cascade overlay">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+                              <img class="card-img-top" src="'.$food['Image'].'" alt="Card image cap" />
                               <a>
                                 <div class="mask rgba-white-slight"></div>
                               </a>
@@ -197,7 +197,7 @@ FoodCourt
                               </h4>
                               <!-- Text -->
                               <p class="card-text">
-                              ' . $food['Description'] . '
+                              ' . $food['Ingredients'] . '
                               </p>
                               <!-- Button -->
                               <a class="btn btn-primary btn-round" onclick="markOrder(\'' . $food['Name'] . '\',\'' . $food['Price'] . '\')">Order</a>
@@ -222,12 +222,12 @@ FoodCourt
 
 
                           <!-- Card Narrower -->
-                          <?php foreach ($FoodArray as $food) {
+                          <?php foreach ($FoodArray['SIH'] as $food) {
                             if ($food['Category'] == "Beverages") {
                               echo '  <div class="card col-lg-3 col-md-12 ml-5" style="height: auto;">
                             <!-- Card image -->
                             <div class="view view-cascade overlay">
-                              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+                              <img class="card-img-top" src="'.$food['Image'].'" alt="Card image cap" />
                               <a>
                                 <div class="mask rgba-white-slight"></div>
                               </a>
@@ -245,7 +245,7 @@ FoodCourt
                               </h4>
                               <!-- Text -->
                               <p class="card-text">
-                              ' . $food['Description'] . '
+                              ' . $food['Ingredients'] . '
                               </p>
                               <!-- Button -->
                               <a class="btn btn-unique btn-round" onclick="markOrder(\'' . $food['Name'] . '\',\'' . $food['Price'] . '\')">Order</a>
@@ -573,50 +573,49 @@ FoodCourt
 
 
     function markOrder(item, price) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to cancle this!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Place order"
+  }).then(result => {
+    if (result.value) {
+      var email = localStorage.getItem("email");
+      var seat = localStorage.getItem("seat");
+      var name = localStorage.getItem("username");
+      
+      $.ajax({
+        url: "./storefoodorder.php", //the page containing php script
+        type: "post", //request type,
+        data: {
+          "item": item,
+          "price": price,
+          "seat": seat,
+          "email": email,
+          "username": name
+        },
+        success: function(result) {
+        },
+        complete: function(result) {
 
-
-      Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to cancle this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Place order'
-      }).then((result) => {
-        if (result.value) {
-
-          $.ajax({
-            url: "./storefoodorder.php", //the page containing php script
-            type: "post", //request type,
-            data: {
-              'item': item,
-              'price': price
-            },
-            success: function(result) {
-              Swal.fire(
-                'order placed',
-                result,
-                'success'
-              )
-            },
-            error: function(result) {
-              swal.fire(
-                'OH No!',
-                result.responseText,
-                'error'
-              );
-              // window.location.reload(true);
-            }
-
-          });
+          Swal.fire(
+            "order placed",
+            `Your order for ${result} has been placed successfully`,
+            "success"
+          );
+        },
+        error: function(result) {
+          swal.fire("OH No!", "something went wrong", "error");
+          // window.location.reload(true);
         }
-      })
+      });
+    }
+  });
+}
 
-
-
-
-    };
   </script>
 </body>
 

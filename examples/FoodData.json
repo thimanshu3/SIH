@@ -1,134 +1,180 @@
-[
- {
-   "Name": "Cup Noodles",
-   "Price": "Rs.200",
-   "Description": "Delicious Masala Flavour",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Poha",
-   "Price": "Rs.200",
-   "Description": "Khata Meetha Poha",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Upma",
-   "Price": "Rs.200",
-   "Description": "A Favourite Indian Breakfast",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Nachos",
-   "Price": "Rs.100",
-   "Description": "Always a good time for cornitos",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Cashew and nuts",
-   "Price": "Rs.150",
-   "Description": "Nutrition is needed to prevent sickness",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Popcorn",
-   "Price": "Rs.150",
-   "Description": "A moment of tasty surprise",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Britannia Cake",
-   "Price": "Rs.50",
-   "Description": "Eat healthy , think better",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Cookies",
-   "Price": "Rs.50",
-   "Description": "A liitle more chocolaty , crunchy",
-   "Category": "Breakfast/Snacks"
- },
- {
-   "Name": "Coffee",
-   "Price": "Rs.100",
-   "Description": "Insert coffee to begin",
-   "Category": "Beverages"
- },
- {
-   "Name": "Strom Energy Drink ",
-   "Price": "Rs.100",
-   "Description": "Awake every senses",
-   "Category": "Beverages"
- },
- {
-   "Name": "Shake",
-   "Price": "Rs.100",
-   "Description": "Catch the spirit",
-   "Category": "Beverages"
- },
- {
-   "Name": "Coca Cola",
-   "Price": "Rs.100",
-   "Description": "Have a coke and smile",
-   "Category": "Beverages"
- },
- {
-   "Name": "Mineral Water",
-   "Price": "Rs.50",
-   "Description": "Obey your thirst",
-   "Category": "Beverages"
- },
- {
-   "Name": "Chai",
-   "Price": "Rs.100",
-   "Description": "Cup of tea to make it large",
-   "Category": "Beverages"
- },
- {
-   "Name": "Bhel Puri",
-   "Price": "Rs.150",
-   "Description": "Eat fresh",
-   "Category": "Snacks"
- },
- {
-   "Name": "Smart kid Bag And Meal",
-   "Price": "Rs.450",
-   "Description": "Eat to live , not live to eat",
-   "Category": "Snacks"
- },
- {
-   "Name": "Samosa",
-   "Price": "Rs.150",
-   "Description": "A little crispy start",
-   "Category": "Snacks"
- },
- {
-   "Name": "Sandwiches",
-   "Price": "Rs.250",
-   "Description": "always hungry for a sandwich",
-   "Category": "Snacks"
- },
- {
-   "Name": "Idli Sambhar",
-   "Price": "Rs.200",
-   "Description": "Idly is overrated",
-   "Category": "Meal"
- },
- {
-   "Name": "Dal Chawal",
-   "Price": "Rs.200",
-   "Description": "Soul comforting food at its best",
-   "Category": "Meal"
- },
- {
-   "Name": "Veg. Biryani",
-   "Price": "Rs.200",
-   "Description": "Biyani taste better then the rest",
-   "Category": "Meal"
- },
- {
-   "Name": "Chicken Biryani",
-   "Price": "Rs.250",
-   "Description": "When you are crazy for chicken ",
-   "Category": "Meal"
- }
-]
+{
+  "SIH": [
+      {
+          "Name": "Cup Noodles",
+          "Price": "Rs.200",
+          "Description": "Delicious Masala Flavour",
+          "Ingredients": "Flour,salt,palm oil,glucose,onion powder,dry soy sauce,powdered chicken",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/cupnoodles.jfif"
+      },
+      {
+          "Name": "Poha",
+          "Price": "Rs.200",
+          "Description": "Khata Meetha Poha",
+          "Ingredients": "cilantro,diced potato,curry leaves,asafoetida,green chili,lime,onion,turmeric,black mustard seed,cashew",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/poha.jpg"
+      },
+      {
+          "Name": "Upma",
+          "Price": "Rs.200",
+          "Description": "A Favourite Indian Breakfast",
+          "Ingredients": "Oil,mustard,cumin,urad dal,channa dal,peanuts,cashews,curry leaves",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/upma.jfif"
+      },
+      {
+          "Name": "Nachos",
+          "Price": "Rs.100",
+          "Description": "Always a good time for cornitos",
+          "Ingredients": "Cheese,cheddar cheese,jalapeno,ground beef,sour cream,tortilla chip,chilli pepper,tomato chip,onion",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/nachos.jfif"
+      },
+      {
+          "Name": "Cashew",
+          "Price": "Rs.150",
+          "Description": "Nutrition is needed to prevent sickness",
+          "Ingredients": "Maganese,potassium,copper,iron,magnesium,zinc and selenium",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/cashew.jfif"
+      },
+      {
+          "Name": "Popcorn",
+          "Price": "Rs.150",
+          "Description": "A moment of tasty surprise",
+          "Ingredients": "Corn kernel,salt,butter or oil",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/popcorn.jfif"
+      },
+      {
+          "Name": "Britannia Cake",
+          "Price": "Rs.50",
+          "Description": "Eat healthy , think better",
+          "Ingredients": "Refined white flour , sugar ,  eggs , vegetable oils,fruits products,fruit products,salt",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/britanniacake.jfif"
+      },
+      {
+          "Name": "Cookies",
+          "Price": "Rs.50",
+          "Description": "A liitle more chocolaty , crunchy",
+          "Ingredients": "Butter,sugar,peanut butter,flour,chocolate chip , egg , brown sugar",
+          "Category": "Breakfast/Snacks",
+          "Image": "IMAGES/cookie.jfif"
+      },
+      {
+          "Name": "Coffee",
+          "Price": "Rs.100",
+          "Description": "Insert coffee to begin",
+          "Ingredients": "Caffeine , antioxidants , diterpenes",
+          "Category": "Beverages",
+          "Image": "IMAGES/coffee.jfif"
+      },
+      {
+          "Name": "Strom Energy Drink ",
+          "Price": "Rs.100",
+          "Description": "Awake every senses",
+          "Ingredients": "Caffeine,taurine,glucuronolactone , B Vitamins , guarana , ginseng , sugars , antioxidants",
+          "Category": "Beverages",
+          "Image": "IMAGES\\stormenergydrink.jfif"
+      },
+      {
+          "Name": "Shake",
+          "Price": "Rs.100",
+          "Description": "Catch the spirit",
+          "Ingredients": "Milk,vanilla,banana,sugar,almond milk,vanilla ice cream",
+          "Category": "Beverages",
+          "Image": "IMAGES/shake.png"
+      },
+      {
+          "Name": "Coca Cola",
+          "Price": "Rs.100",
+          "Description": "Have a coke and smile",
+          "Ingredients": "Carbonated water,sugar,caffeine,phosphoric acid,natural flavorings ,natural flavorings",
+          "Category": "Beverages",
+          "Image": "IMAGES/cocacola.jfif"
+      },
+      {
+          "Name": "Mineral Water",
+          "Price": "Rs.50",
+          "Description": "Obey your thirst",
+          "Ingredients": "Water",
+          "Category": "Beverages",
+          "Image": "IMAGES/mineralwater.jfif"
+      },
+      {
+          "Name": "Chai",
+          "Price": "Rs.100",
+          "Description": "Cup of tea to make it large",
+          "Ingredients": "Water,milk,ginger,tea leaves,tea masala powder,sugar",
+          "Category": "Beverages",
+          "Image": "IMAGES\\chai.jfif"
+      },
+      {
+          "Name": "Bhel Puri",
+          "Price": "Rs.150",
+          "Description": "Eat fresh",
+          "Ingredients": "Puffed rice , roasted peanuts , sev or mixture , onions , tomatoes , chaat masala , lemon juice , salt and coriander leaves",
+          "Category": "Snacks",
+          "Image": "IMAGES\\bhelpuri.jfif"
+      },
+      {
+          "Name": "Smart kid Bag And Meal",
+          "Price": "Rs.450",
+          "Description": "Eat to live , not live to eat",
+          "Ingredients": "Popcorn , nachos ,  britannia chunkies and juice",
+          "Category": "Snacks",
+          "Image": "IMAGES\\smartkid.jfif"
+      },
+      {
+          "Name": "Samosa",
+          "Price": "Rs.150",
+          "Description": "A little crispy start",
+          "Ingredients": "Maida , potato,peas,onion,spices,green chili,cheese",
+          "Category": "Snacks",
+          "Image": "IMAGES\\samosa.jfif"
+      },
+      {
+          "Name": "Sanwiches",
+          "Price": "Rs.250",
+          "Description": "Always hungry for a sandwich",
+          "Ingredients": "Bread,butter or ghee , oil , cumin,garlic chopped,turmeric , salt,chilies chopped , tomato , garam masala , coriander leaves",
+          "Category": "Snacks",
+          "Image": "IMAGES\\sandwiches.jfif"
+      },
+      {
+          "Name": "Idli Sambhar",
+          "Price": "Rs.200",
+          "Description": "Idly is overrated",
+          "Ingredients": "Chana dal , coriander seeds , urad dal , cumin , methi seeds , red chilies, water,tamarind,carrot,beans,shalllots,tomato,teaspoon turmeric, coriander leaves",
+          "Category": "Lunch/Dinner",
+          "Image": "IMAGES\\idlisambhar.jfif"
+      },
+      {
+          "Name": "Dal Chawal",
+          "Price": "Rs.200",
+          "Description": "Soul comforting food at its best",
+          "Ingredients": "Water,salt,vegetable oil , mustard seeds , cumin seeds , asafetida , turmeric powder, cilantro,ghee",
+          "Category": "Lunch/Dinner",
+          "Image": "IMAGES\\dalchawal.jfif"
+      },
+      {
+          "Name": "Veg. Biryani",
+          "Price": "Rs.200",
+          "Description": "Biryani taste better then the rest",
+          "Ingredients": "Rice , onion , green chili,ginger garlic paste , mint leaves,coriander leaves,red chili powder,garam masala,tomato,water,oil,curd , salt , carrot,potato,green peas",
+          "Category": "Lunch/Dinner",
+          "Image": "IMAGES\\vegbiryani.jfif"
+      },
+      {
+          "Name": "Chicken Biryani",
+          "Price": "Rs.250",
+          "Description": "When you are crazy for chicken ",
+          "Ingredients": "Basmati rice,mint leaves,salt,coriander powder,garlic paste,tomato , white onion,cardamon,milk,chicken thighs,masala powder,saffron,ginger paste,green chili,tomato,cumin seeds,refined oil",
+          "Category": "Lunch/Dinner",
+          "Image": "IMAGES\\chickenbiryani.jfif"
+      }
+  ]
+}

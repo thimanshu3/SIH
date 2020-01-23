@@ -115,7 +115,6 @@ recognition.onresult = function(event) {
 
   // Get a transcript of what was said.
   var transcript = event.results[current][0].transcript;
-  console.log(transcript);
 
   // Add the current transcript to the contents of our Note.
   // There is a weird bug on mobile, where everything is repeated twice.
@@ -126,19 +125,30 @@ recognition.onresult = function(event) {
   if (!mobileRepeatBug) {
     sendmsgtoscreen(transcript, "right");
     $.ajax({
-      url: "chatbotconnection.php", //the page containing php script
+      url: "ChatBotConnection.php", //the page containing php script
       type: "post", //request type,
       data: { message: transcript },
       success: function(result) {
-        //console.log("The Result is"+result);
-        //result = JSON.parse(result);
-        //result=(result.output);
-
-        // var obj = JSON.parse(result);
         console.log(result);
-        var message = result;
-        sendmsgtoscreen(message, "left");
-        readOutLoud(message);
+        var result = JSON.parse(result);
+        if (result.context.request == "show-food-cards") {
+          readOutLoud(
+            "what would you like to have select from the category below"
+          );
+          showFoodOptions();
+        } else if (result.context.request == "show-snack-cards") {
+          getData("snacks");
+        } else if (result.context.request == "show-beverage-cards") {
+          getData("bevereges");
+        } else if (result.context.request == "show-meal-cards") {
+          getData("meals");
+        } else {
+          //  var message = result.;
+          // alert(result.context.request);
+
+          sendmsgtoscreen(result.output.text, "left");
+          readOutLoud(result.output.text);
+        }
       }
     });
   }
@@ -311,35 +321,6 @@ function scrollDown() {
   if ($scrollHeight > $maxHeight) $container.scrollTop($scrollHeight);
 }
 
-function markorder(item, price) {
-  // alert(item);
-
-  Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to cancle this!",
-    type: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Place order"
-  }).then(result => {
-    if (result.value) {
-      $.ajax({
-        url: "storefoodorder.php", //the page containing php script
-        type: "post", //request type,
-        data: { item: item },
-        success: function(result) {
-          Swal.fire(
-            "order placed",
-            "Your item has been orderd successfully.",
-            "success"
-          );
-        }
-      });
-    }
-  });
-}
-
 $(document).ready(function() {
   /* Toggle Video Modal
   -----------------------------------------*/
@@ -405,51 +386,407 @@ function opennews(news) {
   document.getElementById("newsmodal").innerHTML = news;
 }
 
-// function feedbackform(field1, field2, field3, field14) {
-// Swal.mixin({
-//   input: 'text',
-//   confirmButtonText: 'Next &rarr;',
-//   showCancelButton: true,
-//   progressSteps: ['1', '2', '3']
-// }).queue([
-//   const { value: fruit } = await Swal.fire({
-//   title: 'Select field validation',
-//   input: 'select',
-//   inputOptions: {
-//     apples: 'Apples',
-//     bananas: 'Bananas',
-//     grapes: 'Grapes',
-//     oranges: 'Oranges'
-//   },
-//   inputPlaceholder: 'Select a fruit',
-//   showCancelButton: true,
-//   inputValidator: (value) => {
-//     return new Promise((resolve) => {
-//       if (value === 'oranges') {
-//         resolve()
-//       } else {
-//         resolve('You need to select oranges :)')
-//       }
-//     })
-//   }
-// })
+//show food options
+function showFoodOptions() {
+  $("#div1").html(`
+  
+  <div class="container" style="max-width: 100%">
+  <div class="row ml-5">
+  <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
 
-// if (fruit) {
-//   Swal.fire('You selected: ' + fruit)
-// },
-//   'Question 2',
-//   'Question 3'
-// ]).then((result) => {
-//   if (result.value) {
-//     Swal.fire({
-//       title: 'All done!',
-//       html:
-//         'Your answers: <pre><code>' +
-//           JSON.stringify(result.value) +
-//         '</code></pre>',
-//       confirmButtonText: 'Lovely!'
-//     })
-//   }
-// })
+  <div class="view view-cascade overlay">
+    <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+    <a>
+      <div class="mask rgba-white-slight"></div>
+    </a>
+  </div>
 
-// }
+  <div class="card-body card-body-cascade">
+    <h5 class="pink-text pb-2 pt-1">
+      <i class="fas fa-utensils"></i>
+      &nbspSnacks
+    </h5>
+    <h4 class="font-weight-bold card-title">
+    </h4>
+    <p class="card-text">
+    </p>
+    <a class="btn btn-primary btn-round" onclick="getData('snacks');">Order</a>
+  </div>
+
+  <div class="card-footer text-muted text-center">
+  </div>
+</div>
+
+<div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
+
+        <div class="view view-cascade overlay">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <div class="card-body card-body-cascade">
+          <h5 class="pink-text pb-2 pt-1">
+            <i class="fas fa-utensils"></i>&nbspBevereages
+          </h5>
+          <h4 class="font-weight-bold card-title">
+          </h4>
+          <p class="card-text">
+          </p>
+          <a class="btn btn-primary btn-round"  onclick="getData('bevereges');">Order</a>
+        </div>
+
+        <div class="card-footer text-muted text-center">
+        </div>
+      </div>
+      <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
+
+        <div class="view view-cascade overlay">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Lightbox/Thumbnail/img%20(147).jpg" alt="Card image cap" />
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <div class="card-body card-body-cascade">
+          <h5 class="pink-text pb-2 pt-1">
+            <i class="fas fa-utensils"></i>&nbspMeals
+          </h5>
+          <h4 class="font-weight-bold card-title">
+          </h4>
+          <p class="card-text">
+          </p>
+          <a class="btn btn-primary btn-round" onclick="getData('meals');">Order</a>
+        </div>
+
+        <div class="card-footer text-muted text-center">
+        </div>
+      </div>
+  </div>
+  </div>`);
+}
+
+function getData(e) {
+  // data for populating the cards
+
+  $("#div1").html("");
+  readOutLoud("hang on... processing your request");
+  readOutLoud(`here are some prefred ${e} for you`);
+  setTimeout(function() {
+    // if the e is snacks
+    if (e == "snacks") {
+      $("#div1").html(
+        `<div class="container" style="max-width: 100%">
+      <div class="row ml-5">
+      <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                              <img class="card-img-top" src="IMAGES/cupnoodles.jfif" alt="Card image cap">
+                              <a>
+                                <div class="mask rgba-white-slight"></div>
+                              </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade">
+                              <!-- Label -->
+                              <h5 class="pink-text pb-2 pt-1">
+                                <i class="fas fa-utensils"></i>&nbsp; Breakfast/Snacks
+                              </h5>
+                              <form id="snacks" method="post">
+                              <!-- Title -->
+                              <h4 class="font-weight-bold card-title">
+                              Cup Noodles
+                              </h4>
+                              <!-- Text -->
+                              <p class="card-text">
+                              Flour,salt,palm oil,glucose,onion powder,dry soy sauce,powdered chicken
+                              </p>
+                              <!-- Button -->
+                              <a class="btn btn-indigo btn-round" onclick="markOrder('Cup Noodles','Rs.200')">Order</a>
+                            </form></div>
+
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                            Rs.200
+                            </div>
+                            
+                          </div>
+
+                          <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                              <img class="card-img-top" src="IMAGES/popcorn.jfif" alt="Card image cap">
+                              <a>
+                                <div class="mask rgba-white-slight"></div>
+                              </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade">
+                              <!-- Label -->
+                              <h5 class="pink-text pb-2 pt-1">
+                                <i class="fas fa-utensils"></i>&nbsp; Breakfast/Snacks
+                              </h5>
+                              <form id="snacks" method="post">
+                              <!-- Title -->
+                              <h4 class="font-weight-bold card-title">
+                              Popcorn
+                              </h4>
+                              <!-- Text -->
+                              <p class="card-text">
+                              Corn kernel,salt,butter or oil
+                              </p>
+                              <!-- Button -->
+                              <a class="btn btn-indigo btn-round" onclick="markOrder('Popcorn','Rs.150')">Order</a>
+                            </form></div>
+
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                            Rs.150
+                            </div>
+                            
+                          </div>
+
+                          <div class="card card-cascade narrower col-lg-3 col-md-12 ml-5" style="height: auto;">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                              <img class="card-img-top" src="IMAGES/cookie.jfif" alt="Card image cap">
+                              <a>
+                                <div class="mask rgba-white-slight"></div>
+                              </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade">
+                              <!-- Label -->
+                              <h5 class="pink-text pb-2 pt-1">
+                                <i class="fas fa-utensils"></i>&nbsp; Breakfast/Snacks
+                              </h5>
+                              <form id="snacks" method="post">
+                              <!-- Title -->
+                              <h4 class="font-weight-bold card-title">
+                              Cookies
+                              </h4>
+                              <!-- Text -->
+                              <p class="card-text">
+                              Butter,sugar,peanut butter,flour,chocolate chip , egg , brown sugar
+                              </p>
+                              <!-- Button -->
+                              <a class="btn btn-indigo btn-round" onclick="markOrder('Cookies','Rs.50')">Order</a>
+                            </form></div>
+
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                            Rs.50
+                            </div>
+                            
+                          </div>
+                          <a class="btn btn-primary btn-round" href="./FoodCourt">Browse more</a>
+
+      </div>
+      </div>`
+      );
+    }
+
+    if (e == "bevereges") {
+      $("#div1").html(
+        `<div class="container" style="max-width: 100%">
+      <div class="row ml-5">
+     
+      <div class="card col-lg-5 col-md-12 ml-5" style="height: auto;">
+      <!-- Card image -->
+      <div class="view view-cascade overlay">
+        <img class="card-img-top" src="IMAGES/cocacola.jfif" alt="Card image cap">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade">
+        <!-- Label -->
+        <h5 class="pink-text pb-2 pt-1">
+          <i class="fas fa-utensils"></i>&nbsp; Beverages
+        </h5>
+        <!-- Title -->
+        <h4 class="font-weight-bold card-title">
+        Coca Cola
+        </h4>
+        <!-- Text -->
+        <p class="card-text">
+        Carbonated water,sugar,caffeine,phosphoric acid,natural flavorings ,natural flavorings
+        </p>
+        <!-- Button -->
+        <a class="btn btn-unique btn-round" onclick="markOrder('Coca Cola','Rs.100')">Order</a>
+      </div>
+
+      <!-- Card footer -->
+      <div class="card-footer text-muted text-center">
+      Rs.100
+      </div>
+    </div>
+    <div class="card col-lg-5 col-md-12 ml-5" style="height: auto;">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                              <img class="card-img-top" src="IMAGES\chai.jfif" alt="Card image cap">
+                              <a>
+                                <div class="mask rgba-white-slight"></div>
+                              </a>
+                            </div>
+
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade">
+                              <!-- Label -->
+                              <h5 class="pink-text pb-2 pt-1">
+                                <i class="fas fa-utensils"></i>&nbsp; Beverages
+                              </h5>
+                              <!-- Title -->
+                              <h4 class="font-weight-bold card-title">
+                              Chai
+                              </h4>
+                              <!-- Text -->
+                              <p class="card-text">
+                              Water,milk,ginger,tea leaves,tea masala powder,sugar
+                              </p>
+                              <!-- Button -->
+                              <a class="btn btn-unique btn-round" onclick="markOrder('Chai','Rs.100')">Order</a>
+                            </div>
+
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                            Rs.100
+                            </div>
+                          </div>
+    
+      <a class="btn btn-primary btn-round" href="./FoodCourt">Browse more</a>
+
+      </div>
+      </div>`
+      );
+    }
+
+    if (e == "meals") {
+      $("#div1").html(
+        `<div class="container" style="max-width: 100%">
+      <div class="row ml-5">
+      <div class="card card-cascade narrower col-lg-5 col-md-12 ml-5" style="height: auto;">
+      <!-- Card image -->
+      <div class="view view-cascade overlay">
+        <img class="card-img-top" src="./IMAGES/idlisambhar.jfif" alt="Card image cap">
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Card content -->
+      <div class="card-body card-body-cascade">
+        <!-- Label -->
+        <h5 class="pink-text pb-2 pt-1">
+          <i class="fas fa-utensils"></i>&nbsp; Lunch/Dinner
+        </h5>
+        <!-- Title -->
+        <h4 class="font-weight-bold card-title">
+        Idli Sambhar
+        </h4>
+        <!-- Text -->
+        <p class="card-text">
+        </p>
+        <!-- Button -->
+        <a class="btn btn-primary btn-round" onclick="markOrder('Idli Sambhar','Rs.200')">Order</a>
+      </div>
+
+      <!-- Card footer -->
+      <div class="card-footer text-muted text-center">
+      Rs.200
+      </div>
+    </div>
+    <div class="card card-cascade narrower col-lg-5 col-md-12 ml-5" style="height: auto;">
+    <!-- Card image -->
+    <div class="view view-cascade overlay">
+      <img class="card-img-top" src="./IMAGES/chickenbiryani.jfif" alt="Card image cap">
+      <a>
+        <div class="mask rgba-white-slight"></div>
+      </a>
+    </div>
+
+    <!-- Card content -->
+    <div class="card-body card-body-cascade">
+      <!-- Label -->
+      <h5 class="pink-text pb-2 pt-1">
+        <i class="fas fa-utensils"></i>&nbsp; Lunch/Dinner
+      </h5>
+      <!-- Title -->
+      <h4 class="font-weight-bold card-title">
+      Chicken Biryani
+      </h4>
+      <!-- Text -->
+      <p class="card-text">
+      </p>
+      <!-- Button -->
+      <a class="btn btn-primary btn-round" onclick="markOrder('Chicken Biryani','Rs.250')">Order</a>
+    </div>
+
+    <!-- Card footer -->
+    <div class="card-footer text-muted text-center">
+    Rs.250
+    </div>
+  </div>
+  <a class="btn btn-primary btn-round" href="./FoodCourt">Browse more</a>
+
+      </div>
+      </div>`
+      );
+    }
+  }, 4000);
+}
+
+//markorder
+function markOrder(item, price) {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to cancle this!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Place order"
+  }).then(result => {
+    if (result.value) {
+      var email = localStorage.getItem("email");
+      var seat = localStorage.getItem("seat");
+      var name = localStorage.getItem("username");
+      
+      $.ajax({
+        url: "./storefoodorder.php", //the page containing php script
+        type: "post", //request type,
+        data: {
+          "item": item,
+          "price": price,
+          "seat": seat,
+          "email": email,
+          "username": name
+        },
+        success: function(result) {
+          console.log(result);
+          readOutLoud(`your order for ${item} has been placed successfully`);
+        },
+        complete: function(result) {
+          console.log(email , name , seat);
+
+          Swal.fire(
+            "order placed",
+            `Your order for ${result} has been placed successfully`,
+            "success"
+          );
+          window.location.reload(true);
+        },
+        error: function(result) {
+          swal.fire("OH No!", "something went wrong", "error");
+          // window.location.reload(true);
+        }
+      });
+    }
+  });
+}
